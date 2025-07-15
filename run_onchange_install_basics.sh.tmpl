@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+{{ if eq .chezmoi.os "linux" -}}
+if [ -n "$WAYLAND_DISPLAY" ]; then
+  CLIPBOARD="wl-clipboard"
+elif [ -n "$DISPLAY" ]; then
+  CLIPBOARD="xclip"
+else
+  CLIPBOARD=""
+fi
+
+  {{ if (or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.idLike "arch")) -}}
+pacman -Su \
+	binutils \
+	clang \
+	cloc \
+	$CLIPBOARD \
+	entr \
+	fish \
+	gcc \
+	git \
+	kgpg \
+	make \
+	sed \
+	tar \
+	tldr \
+	r \
+	unzip \
+	wget \
+	which
+
+  {{ else if eq .chezmoi.osRelease.id "ubuntu" -}}
+
+sudo apt update
+sudo apt install -y \
+  ca-certificates \
+  curl \
+  entr \
+  tldr \
+  $CLIPBOARD \
+  gcc g++ clang \
+  gnupg \
+  gpg \
+  make \
+  tar \
+  software-properties-common \
+  sed \
+  unzip \
+  which \
+  wget
+
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo add-apt-repository ppa:git-core/ppa
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+sudo apt update
+sudo apt install -y r-base fish git
+
+  {{ end -}}
+{{ else if eq .chezmoi.os "darwin" -}}
+
+brew install \
+  curl \
+  entr \
+  fish \
+  gcc \
+  git \
+  gnu-sed \
+  gnu-tar \
+  gnupg \
+  llvm \
+  pkg-config \
+  tlrc \
+  wget
+
+brew tap r-lib/rig
+brew install --cask rig
+rig add release
+rig library default
+
+{{ end -}}
