@@ -1,0 +1,26 @@
+options(
+  repos = structure(c(CRAN = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")),
+  browser = "firefox",
+  editor = "code",
+  max.print = 100,
+  vsc.use_httpgd = TRUE,
+  # warn on partial matches
+  warnPartialMatchAttr = TRUE,
+  warnPartialMatchDollar = TRUE,
+  warnPartialMatchArgs = TRUE,
+  # fancy quotes are annoying and lead to
+  # 'copy + paste' bugs / frustrations
+  useFancyQuotes = FALSE
+)
+Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "true", ARRO_R_DEV = TRUE)
+# .libPaths("E:/Dokumente/R/win-library/4.0")
+# enable autocompletions for package names in
+# `require()`, `library()`
+utils::rc.settings(ipck = TRUE)
+
+if (interactive()) {
+  # suppressMessages(require(devtools))
+  # suppressMessages(require(conflicted))
+  ulimit <- function(limit = Inf) unix::rlimit_stack(cur = limit)
+}
+

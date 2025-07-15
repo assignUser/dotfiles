@@ -1,0 +1,5 @@
+--theme="Catppuccin Macchiato"
+
+--italic-text=always
+
+--map-syntax ".ignore:Git Ignore"
