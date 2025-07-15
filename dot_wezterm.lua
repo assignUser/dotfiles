@@ -37,7 +37,7 @@ config.window_frame = {
 }
 
 -- config.font = wezterm.font 'FiraCode Nerd Font Mono'
-config.font = wezterm.font 'Monaspace Argon'
+-- config.font = wezterm.font 'Monaspace Argon'
 config.font_size = 12
 
 config.scrollback_lines = 50000
