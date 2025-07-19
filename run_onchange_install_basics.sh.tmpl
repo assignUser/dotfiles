@@ -9,7 +9,7 @@ else
 fi
 
   {{ if (or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.idLike "arch")) -}}
-pacman -Su \
+sudo pacman -Su \
 	binutils \
 	clang \
 	cloc \
