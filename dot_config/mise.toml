@@ -1,6 +1,6 @@
 [tools]
 "ast-grep" = "latest"
-"bacon" = "latest"
+"cargo:bacon" = "latest"
 "bat" = "latest"
 "btop" = "latest"
 "ccache" = "latest"
