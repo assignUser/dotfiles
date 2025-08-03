@@ -1,7 +1,9 @@
+# vim: ft=gitconfig
+
 [user]
 	email = jacob@wujciak.de
 	name = Jacob Wujciak-Jens
-	signingKey = /home/jwj/.ssh/oss.pub
+	signingKey = ~/.ssh/oss.pub
 [core]
 	excludesFile = ~/.gitexcludes
 	pager = delta
@@ -52,7 +54,7 @@
     diffFilter = delta --color-only
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [rerere]
 	enabled = true
@@ -82,3 +84,4 @@
 
 [includeIf "gitdir:~/code/"]
 	path = ~/code/.gitconfig
+

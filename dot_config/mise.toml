@@ -1,8 +1,8 @@
 [tools]
 "ast-grep" = "latest"
-"cargo:bacon" = "latest"
 "bat" = "latest"
 "btop" = "latest"
+"cargo:bacon" = "latest"
 "ccache" = "latest"
 "cmake" = "latest"
 "delta" = "latest"
@@ -28,8 +28,8 @@
 "sccache" = "latest"
 "starship" = "latest"
 "tree-sitter" = "latest"
+"ubi:r-lib/rig" = "latest"
 "uv" = "latest"
 "vivid" = "latest"
 "zig" = "latest"
 "zoxide" = "latest"
-
