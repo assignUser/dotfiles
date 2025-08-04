@@ -10,7 +10,7 @@ abbr --add vd deactivate
 abbr --add ia install_archery
 abbr --add dr "docker run --rm -it"
 
+mise activate fish | source
 fzf --fish | source
 starship init fish | source
 zoxide init --cmd cd fish | source
-mise activate fish | source
