@@ -13,3 +13,4 @@ abbr --add dr "docker run --rm -it"
 fzf --fish | source
 starship init fish | source
 zoxide init --cmd cd fish | source
+mise activate fish | source
