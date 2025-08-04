@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('User', {
 
 vim.keymap.set('n', '<M-l>', function()
 		local path = vim.fs.dirname(vim.fn.expand("%:p"))
-		if path.gmatch(path, 'ministarter') then
+		if string.find(path, 'ministarter') then
 			path = ""
 		end
 		MiniFiles.open(path)
