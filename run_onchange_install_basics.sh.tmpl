@@ -14,6 +14,7 @@ sudo pacman -Su \
 	clang \
 	cloc \
 	$CLIPBOARD \
+	curl \
 	entr \
 	fish \
 	gcc \
@@ -74,3 +75,5 @@ rig add release
 rig library default
 
 {{ end -}}
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
