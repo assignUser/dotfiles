@@ -9,6 +9,7 @@ abbr --add va "source .venv/bin/activate.fish"
 abbr --add vd deactivate
 abbr --add ia install_archery
 abbr --add dr "docker run --rm -it"
+abbr --add ope "op run --env-file .env --"
 
 mise activate fish | source
 fzf --fish | source
