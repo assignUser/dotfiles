@@ -3,7 +3,8 @@
 [user]
 	email = jacob@wujciak.de
 	name = Jacob Wujciak-Jens
-	signingKey = ~/.ssh/oss.pub
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII28nDABt77EtbXW4KmrDneyrbKH4MOG4mmokX9wg0eP
+
 [core]
 	excludesFile = ~/.gitexcludes
 	pager = delta
@@ -65,23 +66,14 @@
 [worktree]
 	guessRemote = true
 
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-[credential "https://github.com"]
-	helper =
-	helper = /usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = /usr/bin/gh auth git-credential
-
 [gpg]
 	format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+
 [commit]
 	gpgsign = true
 
-[includeIf "gitdir:~/voda/"]
-	path = ~/voda/.gitconfig
-
-[includeIf "gitdir:~/code/"]
-	path = ~/code/.gitconfig
-
+[includeIf "gitdir:~/txt/"]
+	path = ~/txt/.gitconfig

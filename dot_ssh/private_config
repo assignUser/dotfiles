@@ -1,0 +1,26 @@
+# vim: set filetype=sshconfig syn=sshconfig shiftwidth=2 expandtab :
+
+Host *
+  IdentityAgent ~/.1password/agent.sock
+
+# AddKeysToAgent yes
+# ForwardX11 no
+# Compression yes
+# TCPKeepAlive yes
+#
+# HashKnownHosts yes
+# PasswordAuthentication no
+# PreferredAuthentications publickey
+# # IdentitiesOnly yes # doesn't work with 1pw
+# RekeyLimit 1G 60m
+#
+# # Allowed Ciphers
+# KexAlgorithms ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+#
+# Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc
+#
+# MACs hmac-sha2-256,hmac-sha2-512
+#
+# HostKeyAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521
+#
+# HostbasedAcceptedAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521

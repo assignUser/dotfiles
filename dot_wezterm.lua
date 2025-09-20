@@ -74,7 +74,20 @@ config.mouse_bindings = {
 			act.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection',
 			act.ClearSelection
 		}
-	}
+	},
+	-- Slower scroll up/down (3 lines instead of Page Up/Down)
+	{
+		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+		mods = 'NONE',
+		action = wezterm.action.ScrollByLine(-3),
+		alt_screen = false,
+	},
+	{
+		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+		mods = 'NONE',
+		action = wezterm.action.ScrollByLine(3),
+		alt_screen = false,
+	},
 }
 
 config.hide_tab_bar_if_only_one_tab = true
@@ -142,5 +155,13 @@ wezterm.on("update-right-status", function(window, pane)
 	wezterm.GLOBAL.title_cache = title_cache
 end)
 
+local onep_auth =
+    string.format('%s/.1password/agent.sock', wezterm.home_dir)
+-- Glob is being used here as an indirect way to check to see if
+-- the socket exists or not. If it didn't, the length of the result
+-- would be 0
+if #wezterm.glob(onep_auth) == 1 then
+	config.default_ssh_auth_sock = onep_auth
+end
 
 return config

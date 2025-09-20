@@ -13,3 +13,5 @@ mise activate fish | source
 fzf --fish | source
 starship init fish | source
 zoxide init --cmd cd fish | source
+
+source /home/jwj/.config/op/plugins.sh
