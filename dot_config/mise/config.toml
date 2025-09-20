@@ -4,9 +4,11 @@
 "bat" = "latest"
 "btop" = "latest"
 "cargo:bacon" = "latest"
+"cargo:emacs-lsp-booster" = "latest"
 "ccache" = "latest"
 "cmake" = "latest"
 "delta" = "latest"
+docker-cli = "latest"
 "eza" = "latest"
 "fd" = "latest"
 "fzf" = "latest"
@@ -20,12 +22,15 @@
 "neovim" = "latest"
 "ninja" = "latest"
 "node" = "lts"
+opentofu = "latest"
 "pixi" = "latest"
 "pre-commit" = "latest"
 "python" = "3"
 "ripgrep" = "latest"
-"rust-analyzer" = "latest"
+rust = "latest"
+rust-analyzer = "latest"
 "sccache" = "latest"
+shellcheck = "latest"
 "starship" = "latest"
 "tree-sitter" = "latest"
 "uv" = "latest"
@@ -35,3 +40,8 @@
 
 [env]
 RUSTC_WRAPPER="sccache"
+RUSTUP_TOOLCHAIN="" #prevent mise from overriding rustup-toolchain.toml
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["rust"]
