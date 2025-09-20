@@ -36,9 +36,12 @@ require('lazy').setup({
 
 		}
 	},
-	{ "rose-pine/neovim",      name = "rose-pine" },
+	{ "rose-pine/neovim",                        name = "rose-pine" },
 	-- Detect tabstop and shiftwidth automatically
-	'nmac427/guess-indent.nvim',
+	{
+		'nmac427/guess-indent.nvim',
+		opts = {},
+	},
 	{
 		-- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
@@ -176,7 +179,7 @@ require('lazy').setup({
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	{ 'folke/which-key.nvim',                     opts = {} },
+	{ 'folke/which-key.nvim',  opts = {} },
 	{
 		-- Adds git releated signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',

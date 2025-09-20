@@ -8,6 +8,7 @@ require("conform").setup({
   },
 
   formatters_by_ft = {
+    markdown = {"mdformat"},
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
@@ -18,11 +19,12 @@ require("conform").setup({
     -- Use the "_" filetype to run formatters on filetypes that don't
     -- have other formatters configured.
     r = { "styler" },
+    toml = {"pyproject-fmt"},
     quarto = { "styler" },
     ["_"] = { "trim_whitespace" },
   },
   default_format_opts = {
-    lsp_format = "fallback",
+    lsp_format = "prefer",
   },
 })
 
