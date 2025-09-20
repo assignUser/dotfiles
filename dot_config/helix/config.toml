@@ -1,0 +1,23 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+"C-6" = "goto_last_accessed_file"
+"$" = "goto_line_end"
+"0" = "goto_line_start"
+"S-v" = "@xv"
+"S-g" = "goto_file_end"
+
+[keys.normal.space]
+"space" = "buffer_picker" 
+
