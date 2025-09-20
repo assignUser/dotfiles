@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 {{ if eq .chezmoi.os "linux" -}}
 if [ -n "$WAYLAND_DISPLAY" ]; then
   CLIPBOARD="wl-clipboard"
@@ -75,5 +75,3 @@ rig add release
 rig library default
 
 {{ end -}}
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
