@@ -1,6 +1,6 @@
 ;;; ...  -*- lexical-binding: t -*-
 (use-package general
-  :defer t
+  :demand t
   :config
   (general-create-definer jwj/undefine
     :keymaps 'override
@@ -20,18 +20,17 @@
    :prefix "SPC m"
    :global-prefix "M-m"))
 
-  (use-package hydra
-    :defer t
-    :after catppucin-theme
-    :config
-    (set-face-attribute 'hydra-face-red nil :foreground (catppuccin-get-color 'mauve))
-    (set-face-attribute 'hydra-face-blue nil :foreground (catppuccin-get-color 'blue))
-    (set-face-attribute 'hydra-face-pink nil :foreground (catppuccin-get-color 'pink))
-    (set-face-attribute 'hydra-face-teal nil :foreground (catppuccin-get-color 'teal))
-    (set-face-attribute 'hydra-face-amaranth nil :foreground (catppuccin-get-color 'maroon))
-    )
+(use-package hydra
+  :after catppuccin-theme
+  :config
+  (set-face-attribute 'hydra-face-red nil :foreground (catppuccin-get-color 'mauve))
+  (set-face-attribute 'hydra-face-blue nil :foreground (catppuccin-get-color 'blue))
+  (set-face-attribute 'hydra-face-pink nil :foreground (catppuccin-get-color 'pink))
+  (set-face-attribute 'hydra-face-teal nil :foreground (catppuccin-get-color 'teal))
+  (set-face-attribute 'hydra-face-amaranth nil :foreground (catppuccin-get-color 'maroon)))
 
 (general-define-key
+ :packages 'avy
  "C-j" '("Jump to char" . avy-goto-char-timer)
  "C-5" 'other-window ; analog to C-6
  [escape]  'keyboard-escape-quit ;; Makes Escape quit prompts (Minibuffer Escape)
@@ -42,8 +41,8 @@
  "<C-wheel-down>"  'text-scale-decrease)
 
 (jwj/evil
-  :packages 'org-mode
   :keymaps 'org-mode-map
+  :packages '(org avy)
   "C-j" '("Jump to char" . avy-goto-char-timer)
   "M-RET" '("Insert item" . org-insert-item))
 
@@ -61,14 +60,16 @@
 (jwj/local-leader-key
   :packages 'rustic
   :keymaps 'rustic-mode-map
-  "t" '("Run current test" . my/rustic-run-test-at-point-ts)
+  "t" '("Run current test" . jwj/rustic-run-test-at-point-ts)
   "f" '("Run clippy fix" . rustic-cargo-clippy-fix )
-  "b" '("build this package" . rustic-cargo-build))
+  "b" '("build this package" . rustic-cargo-build)
+  "L" '("Toggle large-file profile" . jwj/rust-toggle-large-file-optimizations))
 
 (jwj/evil
   "g r" '("Show references" . xref-find-references))
 
 (jwj/leader-key
+  :packages 'consult
   "SPC" '("Switch buffer" . consult-buffer)
   "."   '("Find file" . find-file)
   "\""  '("Yank history" . consult-yank-from-kill-ring)
@@ -83,6 +84,11 @@
          (lambda ()
            (interactive)
            (switch-to-buffer "*scratch*"))
+         )
+  "m"  '("Switch to messages buffer." .
+         (lambda ()
+           (interactive)
+           (switch-to-buffer "*Messages*"))
          )
   "d" '("Kill buffer" . kill-current-buffer)
   "D" '("Kill buffer & window" . kill-buffer-and-window))
@@ -114,6 +120,7 @@
 
 (jwj/leader-key
   :infix "p"
+  :packages '(project consult)
   ""  '("Projects" . (keymap))
   "d" '("Open dired in project" . project-dired)
   "f" '("Find in project" . project-find-file)
@@ -125,17 +132,19 @@
 
 (jwj/leader-key
   :infix "o"
+  :packages '(org consult-org vterm ghostel)
   ""  '("Open/Org" . (keymap))
   "c" '("Capture" . org-capture)
   "a" '("Agenda" . org-agenda)
   "h" '("Headings" . consult-org-agenda)
-  "t" '("Terminal" . my/open-vterm)
-  "T" '("Terminal here" . my/open-vterm-here)
+  "t" '("Terminal" . jwj/open-term)
+  "T" '("Terminal here" . jwj/open-term-here)
   "-" '("Dired" . dired-jump)
   )
 
 (jwj/leader-key
   :infix "q"
+  :packages 'restart-emacs
   ""  '("Quit" . (keymap))
   "q" '("Quit Emacs" . save-buffers-kill-terminal)
   "r" '("Restart Emacs" . restart-emacs)
@@ -143,6 +152,7 @@
 
 (jwj/leader-key
   :infix "s"
+  :packages '(consult consult-org)
   ""  '("Search" . (keymap))
   "g" '("rip[g]rep" . consult-ripgrep)
   "f" '("Fd file" . consult-fd)
@@ -152,6 +162,7 @@
 
 (jwj/leader-key
   :infix "t"
+  :packages '(org consult-org olivetti flycheck)
   ""  '("Toggle" . (keymap))
   "c" '("Clock" . (lambda ()
                     (interactive)
@@ -170,6 +181,7 @@
 
 (jwj/leader-key
   :infix "l"
+  :packages '(lsp-mode consult-lsp)
   "" '("LSP" . (keymap))
   "f" '("Format" . lsp-format-buffer)
   "c" '("Code Action" . lsp-code-action?)
@@ -210,11 +222,9 @@
   "L" '("Move window Right" . evil-window-move-far-right)
 
   ;; --- Splitting (Visual Mnemonics) ---
-  ;; "/" looks like a vertical line, so it splits right
-  "/" '("Split Right" . evil-window-vsplit)
+  "|" '("Split Right" . evil-window-vsplit)
   "v" '("Split Right" . evil-window-vsplit) ;; Alias for vim habit
 
-  ;; "-" looks like a horizontal line, so it splits below
   "-" '("Split Below" . evil-window-split)
   "s" '("Split Below" . evil-window-split)  ;; Alias for vim habit
 

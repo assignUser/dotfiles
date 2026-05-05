@@ -4,6 +4,18 @@
 (setq       package-enable-at-startup nil ; prevent package.el loading packages prior to their init-file loading
             package-native-compile    t)
 
+;; Prefer newer source files over stale byte-compiled output.
+(setq load-prefer-newer t)
+
+;; Paint the first frame close to the final theme to avoid a white flash.
+(setq frame-inhibit-implied-resize t)
+(dolist (frame-params '((background-color . "#24273a")
+                        (foreground-color . "#cad3f5")
+                        (cursor-color . "#f4dbd6")
+                        (background-mode . dark)))
+  (add-to-list 'default-frame-alist frame-params)
+  (add-to-list 'initial-frame-alist frame-params))
+
 (scroll-bar-mode -1)               ; disable scrollbar
 (tool-bar-mode -1)                 ; disable toolbar
 (tooltip-mode -1)                  ; disable tooltips

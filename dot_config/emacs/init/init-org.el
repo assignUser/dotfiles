@@ -1,7 +1,7 @@
 ;;; ...  -*- lexical-binding: t -*-
 
 (use-package org
-  :straight '(:type built-in)
+  :straight (:type built-in)
   :defer t
   :init
   (setq org-directory "~/org/")
@@ -12,20 +12,35 @@
   ;; (org-log-into-drawer "NOTES")
   (org-return-follows-link t)
   :hook
-  ((org-mode . (lambda () (set-fill-column 90)))
+  ((org-mode . (lambda () (setq fill-column 90)))
    (org-mode . turn-on-visual-line-mode))
   :config
   (custom-set-faces
-   `(org-document-title ((t (:height 1.6 :foreground ,(catppuccin-get-color 'blue)))))
-   `(org-level-1          ((t (:height 1.4 :foreground ,(catppuccin-get-color 'sapphire)))))
-   `(org-level-2          ((t (:height 1.3 :foreground ,(catppuccin-get-color 'sky)))))
-   `(org-level-3          ((t (:height 1.2 :foreground ,(catppuccin-get-color 'teal)))))
-   '(org-level-4          ((t (:height 1.2))))
-   '(org-level-5          ((t (:height 1.2))))
-   '(org-level-6          ((t (:height 1.2))))
-   '(org-level-7          ((t (:height 1.2))))
-   '(org-level-8          ((t (:height 1.2))))
-   '(org-level-9          ((t (:height 1.2)))))
+   `(org-drawer ((t (:family ,(jwj/get-font-name 'term) :foreground ,(catppuccin-get-color 'sky)))))
+   `(org-special-keyword ((t (:family ,(jwj/get-font-name 'term)))))
+   '(org-done ((t (:inherit shadow))))
+   `(org-document-title ((t (:family ,(jwj/get-font-name 'heading)
+                                     :weight medium
+                                     :height 1.6
+                                     :foreground ,(catppuccin-get-color 'blue)))))
+   `(org-level-1 ((t (:family ,(jwj/get-font-name 'heading)
+                              :weight medium
+                              :height 1.4
+                              :foreground ,(catppuccin-get-color 'sapphire)))))
+   `(org-level-2 ((t (:family ,(jwj/get-font-name 'heading)
+                              :weight medium
+                              :height 1.3
+                              :foreground ,(catppuccin-get-color 'sky)))))
+   `(org-level-3 ((t (:family ,(jwj/get-font-name 'heading)
+                              :weight medium
+                              :height 1.2
+                              :foreground ,(catppuccin-get-color 'teal)))))
+   `(org-level-4 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2))))
+   `(org-level-5 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2))))
+   `(org-level-6 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2))))
+   `(org-level-7 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2))))
+   `(org-level-8 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2))))
+   `(org-level-9 ((t (:family ,(jwj/get-font-name 'heading) :height 1.2)))))
 
   )
 
@@ -139,13 +154,11 @@
   :custom
   (org-noter-default-notes-file-names '("notes.org" "glr.org"))
   (org-noter-notes-search-path  (cons org-directory '()))
-  :general
+  :config
   (jwj/evil
-  :keymaps 'org-noter-doc-mode-map
-  "i" '("Insert note" . org-noter-insert-note)
-  "q" '("Kill session" . org-noter-kill-session)
-  )
-)
+    :keymaps 'org-noter-doc-mode-map
+    "i" '("Insert note" . org-noter-insert-note)
+    "q" '("Kill session" . org-noter-kill-session)))
 
 ;;;###autoload
 (defun my-consult-org-clock-in (cand)
@@ -197,9 +210,9 @@
   (org-clock-reminder-inactive-text "No task is being clocked. Reminder to clock-in")
   (org-clock-reminder-inactive-title "Clock Notification")
   (org-clock-reminder-active-title "Clock Notification")
-  (org-clock-reminder-icons (cons  (expand-file-name "straight/repos/org-clock-reminder/icons/clocking.png" user-emacs-directory)
-                                   (expand-file-name "straight/repos/org-clock-reminder/icons/inactivity.png" user-emacs-directory)))
-  :hook (after-init . org-clock-reminder-mode)
+  (org-clock-reminder-icons (cons (expand-file-name "repos/org-clock-reminder/icons/clocking.png" straight-base-dir)
+                                  (expand-file-name "repos/org-clock-reminder/icons/inactivity.png" straight-base-dir)))
+  :hook (emacs-startup . org-clock-reminder-mode)
 )
 
 

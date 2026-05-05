@@ -7,6 +7,7 @@
  '(custom-safe-themes
    '("c3076fdee603e9768817cfe8dbf6253d5b3cf3bf4602cb32fa2f1df62fe70b1c"
      default))
+ '(ghostel-set-title-function nil)
  '(xref-prompt-for-identifier
    '(not xref-find-definitions xref-find-definitions-other-window
          xref-find-definitions-other-frame xref-find-references)))
@@ -17,6 +18,8 @@
  ;; If there is more than one, they won't work right.
  '(lsp-face-semhl-property ((t (:foreground "#b7bdf8"))))
  '(org-document-title ((t (:height 1.6 :foreground "#8aadf4"))))
+ '(org-done ((t (:inherit shadow))))
+ '(org-drawer ((t (:family "Monaspace Krypton NFF" :foreground "#91d7e3"))))
  '(org-level-1 ((t (:height 1.4 :foreground "#7dc4e4"))))
  '(org-level-2 ((t (:height 1.3 :foreground "#91d7e3"))))
  '(org-level-3 ((t (:height 1.2 :foreground "#8bd5ca"))))
@@ -26,4 +29,5 @@
  '(org-level-7 ((t (:height 1.2))))
  '(org-level-8 ((t (:height 1.2))))
  '(org-level-9 ((t (:height 1.2))))
+ '(org-special-keyword ((t (:family "Monaspace Krypton NFF"))))
  '(pulse-highlight-start-face ((t (:background "#7dc4e4")))))
